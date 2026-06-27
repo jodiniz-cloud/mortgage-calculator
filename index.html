@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Calculator — Monthly Payment, PMI & Amortization 2025</title>
+<meta name="description" content="Free mortgage calculator. Calculate your monthly payment, total interest paid, and full amortization schedule. Includes PMI, property tax, and insurance estimates.">
+<meta name="keywords" content="mortgage calculator, monthly mortgage payment calculator, home loan calculator, mortgage amortization calculator, PMI calculator, how much house can I afford 2025">
+<link rel="canonical" href="https://mortgage-calculator.pages.dev/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6626869606288906" crossorigin="anonymous"></script>
+<meta property="og:title" content="Mortgage Calculator — Monthly Payment & Amortization 2025">
+<meta property="og:description" content="Calculate your monthly mortgage payment in seconds. See total interest, PMI, and full payment breakdown.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mortgage-calculator.pages.dev/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Calculator","description":"Free mortgage payment calculator with amortization, PMI, property tax, and insurance estimates","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is a monthly mortgage payment calculated?","acceptedAnswer":{"@type":"Answer","text":"Your monthly principal and interest (P&I) uses the formula M = P × [r(1+r)^n] / [(1+r)^n − 1], where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of payments (years × 12). For example, a $400,000 loan at 6.8% for 30 years yields a monthly P&I of $2,610. Add property tax, insurance, and any PMI to get your full PITI payment."}},{"@type":"Question","name":"What is PMI and when do I need it?","acceptedAnswer":{"@type":"Answer","text":"Private Mortgage Insurance (PMI) is required on conventional loans when your down payment is less than 20% of the home price. PMI typically costs 0.5%–1.5% of your loan amount per year, added to your monthly payment. Once your loan balance reaches 80% LTV, you can request PMI cancellation under the Homeowners Protection Act. FHA loans use MIP instead, which behaves differently."}},{"@type":"Question","name":"What is the difference between a 15-year and 30-year mortgage?","acceptedAnswer":{"@type":"Answer","text":"A 30-year mortgage has lower monthly payments but you pay far more interest — often 2×–3× more total. A 15-year mortgage has payments roughly 40–50% higher but you build equity much faster and pay approximately 55% less total interest. 15-year rates are also typically 0.5%–0.75% lower than 30-year rates. Choose 30-year for monthly cash flow flexibility; choose 15-year if you can handle the higher payment and want to minimize interest cost."}},{"@type":"Question","name":"How much house can I afford?","acceptedAnswer":{"@type":"Answer","text":"The standard guideline is the 28/36 rule: your total housing payment (principal, interest, tax, insurance, HOA) should not exceed 28% of your gross monthly income, and all debt payments combined should not exceed 36%. Lenders typically allow a maximum debt-to-income (DTI) ratio of 43–45% for conventional mortgages. With $80,000/year gross income (~$6,667/month), the 28% rule suggests a maximum housing payment of ~$1,867/month."}},{"@type":"Question","name":"What is an amortization schedule?","acceptedAnswer":{"@type":"Answer","text":"An amortization schedule shows exactly how each monthly payment splits between principal reduction and interest over the life of the loan. In the early years the majority of your payment goes to interest — on a 30-year mortgage at typical rates, you do not pass the 50% principal paydown point until roughly year 18–19. Making extra principal payments in the early years has an outsized impact because it reduces the balance on which future interest is calculated."}}]}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f8fafc;--s:#fff;--b:#e2e8f0;--b2:#cbd5e1;--t:#0f172a;--m:#64748b;--d:#94a3b8;--bl:#1d4ed8;--bl-l:#eff6ff;--bl-b:#bfdbfe;--gn:#16a34a;--gn-l:#f0fdf4;--gn-b:#bbf7d0;--yl:#d97706;--yl-l:#fffbeb;--yl-b:#fde68a;--rd:#dc2626;--rd-l:#fef2f2;--rd-b:#fecaca;--or:#ea580c}
+body{background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.6}
+a{color:var(--bl)}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:var(--s);border-bottom:1px solid var(--b);padding:14px 0}
+.hdr{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:800;letter-spacing:-.5px}.logo em{color:var(--bl);font-style:normal}
+.hero{padding:36px 0 28px;text-align:center}
+.hero h1{font-size:clamp(24px,4vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.5px;margin-bottom:12px}
+.hero h1 em{color:var(--bl);font-style:normal}
+.hero p{font-size:16px;color:var(--m);max-width:580px;margin:0 auto 20px}
+.badge-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.badge{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600;color:var(--m)}
+.badge.gn{background:var(--gn-l);border-color:var(--gn-b);color:var(--gn)}
+.grid{display:grid;grid-template-columns:1fr 340px;gap:24px;padding-bottom:48px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--s);border:1px solid var(--b);border-radius:16px;padding:26px}
+.card+.card{margin-top:16px}
+.card-title{font-size:15px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.card-title::before{content:'';width:4px;height:18px;background:var(--bl);border-radius:2px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--m);margin-bottom:5px;text-transform:uppercase;letter-spacing:.2px}
+select,input[type=number]{width:100%;padding:10px 13px;border:1.5px solid var(--b2);border-radius:8px;font-size:15px;color:var(--t);background:var(--s);transition:border-color .15s;-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+select:focus,input:focus{outline:none;border-color:var(--bl)}
+.iw{position:relative}
+.pfx{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-weight:700;color:var(--m);pointer-events:none}
+.sfx{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--d);pointer-events:none}
+.has-pfx input{padding-left:28px}.has-sfx input{padding-right:36px}
+.hint{font-size:11px;color:var(--d);margin-top:4px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dp-toggle{display:flex;background:var(--bg);border:1px solid var(--b2);border-radius:8px;padding:3px;gap:2px;width:fit-content;margin-bottom:8px}
+.dp-btn{background:none;border:none;border-radius:6px;padding:5px 16px;font-size:12px;font-weight:600;color:var(--m);cursor:pointer;transition:all .12s}
+.dp-btn.active{background:var(--s);color:var(--bl);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.calc-btn{width:100%;background:var(--bl);color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px;transition:background .15s}
+.calc-btn:hover{background:#1e40af}
+.result-box{display:none;margin-top:24px}
+.r-main{background:var(--bl-l);border:2px solid var(--bl-b);border-radius:12px;padding:22px;margin-bottom:14px;text-align:center}
+.r-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--bl);margin-bottom:4px}
+.r-amount{font-size:52px;font-weight:800;line-height:1;letter-spacing:-2px;color:var(--bl)}
+.r-sub{font-size:13px;color:var(--m);margin-top:6px}
+.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.r-item{background:var(--bg);border:1px solid var(--b);border-radius:10px;padding:14px;text-align:center}
+.r-i-val{font-size:20px;font-weight:800;color:var(--t)}
+.r-i-lbl{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.3px;margin-top:3px}
+.amort-bar{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:4px 0 8px}
+.amort-p{background:var(--bl)}.amort-i{background:var(--rd)}
+.bar-legend{display:flex;gap:14px;font-size:12px;color:var(--m);margin-bottom:14px}
+.bl-item{display:flex;align-items:center;gap:5px}
+.bl-dot{width:8px;height:8px;border-radius:50%}
+.br-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.br-row:last-child{border-bottom:none;font-weight:700;font-size:14px}
+.br-row .lbl{color:var(--m);display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.info-row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--b)}
+.info-row:last-child{border-bottom:none}
+.info-row .k{color:var(--m)}.info-row .v{font-weight:700}
+.ltv-bar{background:var(--b);border-radius:6px;height:8px;overflow:hidden;margin:6px 0}
+.ltv-fill{height:100%;border-radius:6px;transition:width .4s}
+.ltv-ok{background:var(--gn)}.ltv-warn{background:var(--yl)}.ltv-high{background:var(--rd)}
+.rate-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--b);font-size:13px}
+.rate-item:last-child{border-bottom:none}
+.faq{padding:0 0 48px}
+.faq h2{font-size:22px;font-weight:800;margin-bottom:20px}
+.faq-item{border:1px solid var(--b);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;padding:16px 20px;text-align:left;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--t)}
+.faq-q:hover{background:var(--bg)}
+.faq-a{display:none;padding:0 20px 16px;font-size:14px;color:var(--m);line-height:1.7}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q{color:var(--bl)}
+.ad-slot{background:var(--s);border:1px solid var(--b);border-radius:10px;min-height:90px;display:flex;align-items:center;justify-content:center;margin:20px 0;overflow:hidden}
+footer{background:var(--s);border-top:1px solid var(--b);padding:20px 0;text-align:center;font-size:12px;color:var(--d)}
+footer a{color:var(--d)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="hdr">
+      <div class="logo">🏠 Mortgage<em>Calc</em></div>
+      <span style="font-size:12px;color:var(--m)">Free · No signup</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Mortgage <em>Calculator</em></h1>
+    <p>Calculate your monthly payment instantly. Includes PMI, property tax, insurance, and full amortization breakdown.</p>
+    <div class="badge-row">
+      <span class="badge gn">✓ Free · No signup</span>
+      <span class="badge">2025 US Rates</span>
+      <span class="badge">PMI included</span>
+      <span class="badge">Amortization schedule</span>
+    </div>
+  </div>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-6626869606288906" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <div class="card-title">Loan Details</div>
+        <div class="fg">
+          <label>Home Price</label>
+          <div class="iw has-pfx">
+            <span class="pfx">$</span>
+            <input type="number" id="price" value="400000" min="10000">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Down Payment</label>
+          <div class="dp-toggle">
+            <button class="dp-btn active" id="btn-pct" onclick="toggleDP('pct')">%</button>
+            <button class="dp-btn" id="btn-usd" onclick="toggleDP('usd')">$</button>
+          </div>
+          <div class="fr2">
+            <div id="dp-pct-wrap" class="iw has-sfx">
+              <input type="number" id="dp-pct" value="20" min="0" max="100" step="0.5" oninput="syncDP()">
+              <span class="sfx">%</span>
+            </div>
+            <div id="dp-usd-wrap" class="iw has-pfx" style="display:none">
+              <span class="pfx">$</span>
+              <input type="number" id="dp-usd" value="80000" min="0" oninput="syncDP()">
+            </div>
+            <div>
+              <div style="font-size:12px;color:var(--m);margin-bottom:5px;text-transform:uppercase;font-weight:600;letter-spacing:.2px">Amount</div>
+              <div id="dp-display" style="padding:10px 13px;background:var(--bg);border:1.5px solid var(--b2);border-radius:8px;font-weight:700">$80,000</div>
+            </div>
+          </div>
+          <div class="hint">≥ 20% down avoids PMI (~0.5–1.5%/yr extra)</div>
+        </div>
+        <div class="fr2">
+          <div class="fg">
+            <label>Loan Term</label>
+            <select id="term">
+              <option value="30">30 years</option>
+              <option value="20">20 years</option>
+              <option value="15">15 years</option>
+              <option value="10">10 years</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Interest Rate</label>
+            <div class="iw has-sfx">
+              <input type="number" id="rate" value="6.8" min="0.5" max="25" step="0.05">
+              <span class="sfx">%/yr</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:4px">Monthly Costs (Optional)</div>
+        <div class="fr2">
+          <div class="fg">
+            <label>Property Tax</label>
+            <div class="iw has-sfx">
+              <input type="number" id="tax-rate" value="1.1" min="0" max="5" step="0.05">
+              <span class="sfx">%/yr</span>
+            </div>
+            <div class="hint">US avg ~1.1%/yr</div>
+          </div>
+          <div class="fg">
+            <label>Home Insurance</label>
+            <div class="iw has-pfx">
+              <span class="pfx">$</span>
+              <input type="number" id="ins" value="1400" min="0">
+            </div>
+            <div class="hint">Per year</div>
+          </div>
+        </div>
+        <div class="fg">
+          <label>HOA ($/month)</label>
+          <div class="iw has-pfx">
+            <span class="pfx">$</span>
+            <input type="number" id="hoa" value="0" min="0">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calc()">Calculate My Payment →</button>
+
+        <div class="result-box" id="result">
+          <div class="r-main">
+            <div class="r-label">Monthly P&amp;I Payment</div>
+            <div class="r-amount" id="r-pi">$0</div>
+            <div class="r-sub" id="r-sub">Principal &amp; Interest</div>
+          </div>
+          <div class="r-grid">
+            <div class="r-item">
+              <div class="r-i-val" id="r-total-mo">$0</div>
+              <div class="r-i-lbl">Total Monthly (PITI)</div>
+            </div>
+            <div class="r-item">
+              <div class="r-i-val" id="r-interest">$0</div>
+              <div class="r-i-lbl">Total Interest Paid</div>
+            </div>
+            <div class="r-item">
+              <div class="r-i-val" id="r-total-cost">$0</div>
+              <div class="r-i-lbl">Total Loan Cost</div>
+            </div>
+            <div class="r-item">
+              <div class="r-i-val" id="r-payoff">—</div>
+              <div class="r-i-lbl">Payoff Date</div>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:var(--m);margin-bottom:4px">Principal vs Interest split</div>
+          <div class="amort-bar">
+            <div class="amort-p" id="bar-p" style="width:35%"></div>
+            <div class="amort-i" id="bar-i" style="width:65%"></div>
+          </div>
+          <div class="bar-legend">
+            <div class="bl-item"><div class="bl-dot" style="background:var(--bl)"></div><span id="leg-p">Principal</span></div>
+            <div class="bl-item"><div class="bl-dot" style="background:var(--rd)"></div><span id="leg-i">Interest</span></div>
+          </div>
+          <div class="br-row"><span class="lbl"><span class="dot" style="background:var(--bl)"></span>Principal &amp; Interest</span><span id="b-pi">—</span></div>
+          <div class="br-row" id="row-pmi"><span class="lbl"><span class="dot" style="background:var(--yl)"></span>PMI</span><span id="b-pmi">—</span></div>
+          <div class="br-row"><span class="lbl"><span class="dot" style="background:var(--gn)"></span>Property Tax</span><span id="b-tax">—</span></div>
+          <div class="br-row"><span class="lbl"><span class="dot" style="background:var(--or)"></span>Home Insurance</span><span id="b-ins">—</span></div>
+          <div class="br-row" id="row-hoa"><span class="lbl"><span class="dot" style="background:var(--d)"></span>HOA</span><span id="b-hoa">—</span></div>
+          <div class="br-row"><span class="lbl">Total Monthly (PITI)</span><span id="b-total">—</span></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-6626869606288906" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" id="loan-summary" style="display:none">
+        <div class="card-title">Loan Summary</div>
+        <div class="info-row"><span class="k">Home Price</span><span class="v" id="s-price">—</span></div>
+        <div class="info-row"><span class="k">Down Payment</span><span class="v" id="s-dp">—</span></div>
+        <div class="info-row"><span class="k">Loan Amount</span><span class="v" id="s-loan">—</span></div>
+        <div class="info-row"><span class="k">Rate / Term</span><span class="v" id="s-rate">—</span></div>
+        <div style="margin-top:14px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--m)">
+            <span>Loan-to-Value (LTV)</span><strong id="s-ltv">—</strong>
+          </div>
+          <div class="ltv-bar"><div class="ltv-fill ltv-ok" id="ltv-fill" style="width:0%"></div></div>
+          <div style="font-size:11px;color:var(--d)" id="ltv-note">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">2025 US Mortgage Rates</div>
+        <div class="rate-item"><span style="color:var(--m)">30-year fixed</span><strong style="color:var(--bl)">~6.8%</strong></div>
+        <div class="rate-item"><span style="color:var(--m)">20-year fixed</span><strong style="color:var(--bl)">~6.5%</strong></div>
+        <div class="rate-item"><span style="color:var(--m)">15-year fixed</span><strong style="color:var(--gn)">~6.1%</strong></div>
+        <div class="rate-item"><span style="color:var(--m)">10-year fixed</span><strong style="color:var(--gn)">~5.9%</strong></div>
+        <div class="rate-item"><span style="color:var(--m)">5/1 ARM</span><strong style="color:var(--yl)">~6.2%</strong></div>
+        <div style="font-size:11px;color:var(--d);margin-top:10px">Rates as of Jun 2025. Vary by lender, credit score, and location. Always compare at least 3 lenders.</div>
+      </div>
+
+      <div class="card" id="afford-card" style="display:none">
+        <div class="card-title">Affordability (28% Rule)</div>
+        <div class="info-row"><span class="k">Monthly PITI</span><span class="v" id="af-piti">—</span></div>
+        <div class="info-row"><span class="k">Income needed</span><span class="v" id="af-income">—</span></div>
+        <div class="info-row"><span class="k">Annual income</span><span class="v" id="af-annual">—</span></div>
+        <div style="font-size:11px;color:var(--d);margin-top:10px">28% rule: housing ≤ 28% of gross monthly income. Lenders typically allow up to 43% DTI.</div>
+      </div>
+
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-6626869606288906" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>Mortgage Calculator — Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">How is a monthly mortgage payment calculated? <span>+</span></button>
+      <div class="faq-a">Your monthly P&I uses M = P × [r(1+r)^n] / [(1+r)^n − 1], where P = loan amount, r = monthly rate (annual ÷ 12), n = total payments. A $400,000 loan at 6.8% for 30 years = ~$2,610/month P&I. Add property tax, home insurance, PMI, and HOA to get your full PITI payment.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">What is PMI and when do I need it? <span>+</span></button>
+      <div class="faq-a">Private Mortgage Insurance is required on conventional loans when your down payment is less than 20%. PMI typically costs 0.5–1.5% of the loan per year. Once your balance reaches 80% LTV you can request cancellation under the Homeowners Protection Act. FHA loans use MIP instead, which works differently (often stays for the life of the loan).</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">15-year vs 30-year mortgage — which is better? <span>+</span></button>
+      <div class="faq-a">30-year has lower monthly payments but 2–3× more total interest. 15-year has ~40–50% higher payments but ~55% less interest and builds equity faster. 15-year rates are also typically 0.5–0.75% lower. Choose 30-year for cash flow flexibility; choose 15-year if you want to minimize total interest cost and can handle the higher payment.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">How much house can I afford? <span>+</span></button>
+      <div class="faq-a">The 28/36 rule: housing payment (PITI) ≤ 28% of gross monthly income, total debt ≤ 36%. Lenders typically allow DTI up to 43–45%. On $80k/year ($6,667/month gross), the 28% rule gives a max housing payment of ~$1,867/month. Factor in property taxes and insurance — they can add $500–$1,000+/month on a $400k home.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">What is an amortization schedule? <span>+</span></button>
+      <div class="faq-a">Amortization shows how each payment splits between principal and interest over time. Early payments are mostly interest — on a 30-year mortgage you won't cross the 50% paydown point until roughly year 18–19. Extra principal payments early have an outsized impact because they reduce the balance on which future interest accrues.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>MortgageCalc — Free Mortgage Payment Calculator 2025</p>
+    <p style="margin-top:6px"><a href="/privacy.html">Privacy Policy</a> · Estimates only. Consult a licensed lender for actual rates.</p>
+  </div>
+</footer>
+
+<script>
+var dpMode='pct';
+function $(id){return document.getElementById(id)}
+function fmt(n){return Math.round(n).toLocaleString()}
+function fmtD(n){return '$'+fmt(n)}
+function toggleDP(m){
+  dpMode=m;
+  $('btn-pct').classList.toggle('active',m==='pct');
+  $('btn-usd').classList.toggle('active',m==='usd');
+  $('dp-pct-wrap').style.display=m==='pct'?'':'none';
+  $('dp-usd-wrap').style.display=m==='usd'?'':'none';
+  syncDP();
+}
+function syncDP(){
+  var price=parseFloat($('price').value)||0;
+  if(dpMode==='pct'){
+    var pct=parseFloat($('dp-pct').value)||0;
+    var usd=price*pct/100;
+    $('dp-usd').value=usd.toFixed(0);
+    $('dp-display').textContent=fmtD(usd);
+  } else {
+    var u=parseFloat($('dp-usd').value)||0;
+    var p=price>0?u/price*100:0;
+    $('dp-pct').value=p.toFixed(1);
+    $('dp-display').textContent=p.toFixed(1)+'%';
+  }
+}
+$('price').addEventListener('input',syncDP);
+$('dp-pct').addEventListener('input',syncDP);
+$('dp-usd').addEventListener('input',syncDP);
+
+function calc(){
+  var price=parseFloat($('price').value)||0;
+  var dpUSD=dpMode==='pct'?price*(parseFloat($('dp-pct').value)||0)/100:(parseFloat($('dp-usd').value)||0);
+  var loan=price-dpUSD;
+  var ann=parseFloat($('rate').value)||0;
+  var term=parseInt($('term').value)||30;
+  var taxR=parseFloat($('tax-rate').value)||0;
+  var insY=parseFloat($('ins').value)||0;
+  var hoaM=parseFloat($('hoa').value)||0;
+  if(loan<=0||ann<=0)return;
+  var r=ann/100/12, n=term*12;
+  var pi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  var totalI=pi*n-loan;
+  var ltv=price>0?loan/price*100:0;
+  var pmi=ltv>80?loan*0.01/12:0;
+  var taxM=price*taxR/100/12;
+  var insM=insY/12;
+  var totalM=pi+pmi+taxM+insM+hoaM;
+  // Payoff date
+  var d=new Date(); d.setMonth(d.getMonth()+n);
+  var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Principal%
+  var pp=Math.round(loan/(loan+totalI)*100);
+  // Update
+  $('r-pi').textContent=fmtD(pi);
+  $('r-sub').textContent=pmi>0?'P&I · LTV '+ltv.toFixed(0)+'% — PMI required':'Principal & Interest · No PMI ✓';
+  $('r-total-mo').textContent=fmtD(totalM);
+  $('r-interest').textContent=fmtD(totalI);
+  $('r-total-cost').textContent=fmtD(loan+totalI);
+  $('r-payoff').textContent=mo[d.getMonth()]+' '+d.getFullYear();
+  $('bar-p').style.width=pp+'%'; $('bar-i').style.width=(100-pp)+'%';
+  $('leg-p').textContent='Principal '+pp+'%'; $('leg-i').textContent='Interest '+(100-pp)+'%';
+  $('b-pi').textContent=fmtD(pi)+'/mo';
+  $('b-pmi').textContent=fmtD(pmi)+'/mo'; $('row-pmi').style.display=pmi>0?'':'none';
+  $('b-tax').textContent=fmtD(taxM)+'/mo';
+  $('b-ins').textContent=fmtD(insM)+'/mo';
+  $('b-hoa').textContent=fmtD(hoaM)+'/mo'; $('row-hoa').style.display=hoaM>0?'':'none';
+  $('b-total').textContent=fmtD(totalM)+'/mo';
+  // Summary
+  $('s-price').textContent=fmtD(price);
+  $('s-dp').textContent=fmtD(dpUSD)+' ('+(price>0?dpUSD/price*100:0).toFixed(0)+'%)';
+  $('s-loan').textContent=fmtD(loan);
+  $('s-rate').textContent=ann+'% / '+term+' yr';
+  $('s-ltv').textContent=ltv.toFixed(1)+'%';
+  var f=$('ltv-fill'); f.style.width=Math.min(ltv,100)+'%';
+  f.className='ltv-fill '+(ltv<=80?'ltv-ok':ltv<=95?'ltv-warn':'ltv-high');
+  $('ltv-note').textContent=ltv>80?'LTV '+ltv.toFixed(0)+'% > 80%: PMI ~'+fmtD(pmi)+'/mo required':'LTV '+ltv.toFixed(0)+'% ≤ 80%: No PMI required ✓';
+  $('loan-summary').style.display='';
+  // Affordability
+  var incNeeded=totalM/0.28;
+  $('af-piti').textContent=fmtD(totalM)+'/mo';
+  $('af-income').textContent=fmtD(incNeeded)+'/mo';
+  $('af-annual').textContent=fmtD(incNeeded*12)+'/yr';
+  $('afford-card').style.display='';
+  $('result').style.display='';
+}
+function toggleFAQ(btn){
+  var item=btn.closest('.faq-item');
+  var open=item.classList.toggle('open');
+  btn.querySelector('span').textContent=open?'−':'+';
+}
+window.addEventListener('load',calc);
+</script>
+</body>
+</html>

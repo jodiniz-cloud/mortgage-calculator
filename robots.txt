@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mortgage-calculator.pages.dev/sitemap.xml
